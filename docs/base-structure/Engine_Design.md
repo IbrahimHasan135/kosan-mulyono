@@ -142,7 +142,6 @@ func look_at_player(player_pos: Vector3) -> void:
 
 #### 1. `InteractionService.gd` (Autoload)
 ```gdscript
-class_name InteractionService
 extends Node
 
 @export var raycast: RayCast3D
@@ -168,7 +167,6 @@ func _check_raycast() -> void:
 
 #### 2. `DialogueService.gd` (Autoload)
 ```gdscript
-class_name DialogueService
 extends Node
 
 signal dialogue_started(npc_id: String)
@@ -186,7 +184,6 @@ func start_dialogue(npc_id: String) -> void:
 
 #### 3. `StoryEngineService.gd` (Autoload)
 ```gdscript
-class_name StoryEngineService
 extends Node
 
 var current_chapter: String = "Prologue"
@@ -213,7 +210,6 @@ Solusinya: setiap kategori entitas fisik yang jumlahnya banyak & dinamis wajib m
 
 ```gdscript
 # scripts/services/npc_service.gd
-class_name NPCService
 extends Node
 
 var _npcs: Dictionary = {} # npc_id (String) -> NPCDriver
@@ -290,3 +286,4 @@ func trigger_hasan_discovery_event() -> void:
   - *Driver* **tidak boleh** mengakses Service game secara langsung jika bisa dihindari (gunakan *Signal* jika Driver ingin melapor ke Service).
   - *Service* **tidak boleh** mengatur posisi node fisik secara manual; service wajib memanggil method pada *Driver* terkait.
 - **Registry Service Wajib untuk Entitas Multi-Instance**: Kategori Driver yang punya banyak instance di satu scene (NPC, Item, dll.) wajib diakses lewat Registry Service (`NPCService`, `ItemService`, dst. — lihat §3.B.4), bukan `get_node(...)` hardcoded dari Controller/Service lain. Driver wajib self-register ke Registry Service terkait pada `_ready()` dan unregister pada `_exit_tree()`.
+- **Jangan pakai `class_name` pada script Service yang didaftarkan sebagai Autoload**: Godot melarang `class_name` yang namanya sama persis dengan nama Autoload (`Parse Error: Class "X" hides an autoload singleton`), karena nama Autoload itu sendiri sudah otomatis jadi identifier global. Semua script Service (`InteractionService`, `DialogueService`, `StoryEngineService`, `NPCService`, `ItemService`, dst.) cukup `extends Node` tanpa `class_name` — akses tetap lewat nama Autoload-nya. Aturan ini **tidak berlaku** untuk Driver (Layer 1), yang justru wajib pakai `class_name` karena dipakai untuk type-check (`is InteractableDriver`, dll.) dan bukan Autoload.
