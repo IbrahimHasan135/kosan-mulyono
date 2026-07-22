@@ -14,35 +14,137 @@ size = Vector3(7.247505, 0.50335693, 77.386154)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sw277"]
 size = Vector3(7.247505, 0.50335693, 76.067314)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydiqy"]
+size = Vector3(8.089966, 0.45455933, 12.531628)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4w6r1"]
+size = Vector3(1.8809738, 0.45455933, 1.7387115)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ilhll"]
+size = Vector3(4.11569, 0.45455933, 1.7387115)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5eyk5"]
+size = Vector3(8.089966, 0.2599945, 14.709445)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmydg"]
+size = Vector3(2.0512123, 0.2599945, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5rswm"]
+margin = 0.0
+points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 0, 1.4, 0, 1.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ocfpv"]
+margin = 0.0
+points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 0, 1.4, 0, 1.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yrmyv"]
+margin = 0.0
+points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 0, 1.4, 0, 1.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sw277"]
+margin = 0.0
+points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 0, 1.4, 0, 1.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ydiqy"]
+margin = 0.0
+points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 0, 1.4, 0, 1.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5eyk5"]
+margin = 0.0
+points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 0, 1.4, 0, 1.7)
+
 [node name="MainMap" type="Node3D" unique_id=1776137984]
 
-[node name="Base" type="StaticBody3D" parent="." unique_id=404237522]
-
-[node name="main_map" parent="Base" unique_id=87877897 instance=ExtResource("1_5rswm")]
+[node name="main_map" parent="." unique_id=87877897 instance=ExtResource("1_5rswm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3195888, 0, 3.3104587)
+
+[node name="Base" type="StaticBody3D" parent="." unique_id=404237522]
+visible = false
 
 [node name="Land01" type="CollisionShape3D" parent="Base" unique_id=1879746218]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.21762, -0.24832153, 36.9991)
 shape = SubResource("BoxShape3D_5rswm")
-debug_color = Color(0, 2.09191, 2.4387183, 1)
+debug_color = Color(0, 2.08445, 2.4390545, 1)
+debug_fill = false
 
 [node name="Land02" type="CollisionShape3D" parent="Base" unique_id=1300792530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.05152, -0.24832153, 36.9991)
 shape = SubResource("BoxShape3D_ocfpv")
 debug_color = Color(0, 2.09191, 2.4387183, 1)
+debug_fill = false
 
 [node name="Land03" type="CollisionShape3D" parent="Base" unique_id=929159485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.387077, -0.24832153, 81.9177)
 shape = SubResource("BoxShape3D_yrmyv")
 debug_color = Color(0, 2.09191, 2.4387183, 1)
+debug_fill = false
 
 [node name="Land04" type="CollisionShape3D" parent="Base" unique_id=1648461229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.387077, -0.24832153, -8.720032)
 shape = SubResource("BoxShape3D_sw277")
 debug_color = Color(0, 2.09191, 2.4387183, 1)
+debug_fill = false
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Base" unique_id=1255012231]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3.8987875, 0)
 depth = 8.0
 polygon = PackedVector2Array(3.2081182, -6.256008, 4.883465, -8.640824, 36.426212, -8.335186, 44.904427, -6.056918, 46.934757, -18.77919, 32.100372, -18.731028, 31.031965, -19.61735, 29.293846, -19.593792, 28.396002, -18.337727, 18.850187, -18.354227, 9.36135, -18.536762, 8.271302, -19.341864, 0.8094479, -19.526657, -2.138087, -18.426056, -8.652927, -18.382622, -13.159161, -18.985428, -20.34237, -18.77615, -21.921268, -18.268087, -28.761824, -18.347198, -29.588322, -19.465637, -38.858955, -19.49889, -47.109188, -20.434755, -48.178524, -19.18489, -46.944546, -7.9309425, -34.73541, -7.917832, -32.624294, -7.224291, -31.278881, -8.448489, -28.792786, -8.42359, -28.660202, -4.785653, -25.029741, -4.4487596, -21.902287, 1.0854472, -21.500729, 16.81775, -16.247358, 17.08243, -7.2811255, 17.720863, -6.0989313, 20.667633, -6.2074776, 23.239443, -4.903475, 24.803503, -4.875906, 25.227003, -20.809338, 25.097147, -20.828386, 54.760376, -4.836868, 54.49811, -4.8628125, 55.6878, -6.1650553, 57.04441, -6.166915, 63.649895, -8.326959, 73.50763, -6.9059877, 74.525444, -5.350968, 82.75027, 2.3444922, 78.87149, 3.1268914, 61.302853, 3.5188558, 56.770607, 3.3340385, 54.89691, 2.6385572, 54.542397, 22.721209, 54.67408, 21.900484, 23.76781, 2.40905, 24.247175, 4.5413537, 14.736592, 29.30942, 15.847776, 28.530842, 91.154434, -31.622536, 90.43159, -30.46384, 14.988861, -63.355915, 15.547741, -64.90306, -49.034954, 57.40056, -45.543453, 56.120537, 17.333921, 4.535659, 14.505699)
+debug_color = Color(0, 0.5950001, 0.7, 1)
+debug_fill = false
+
+[node name="Kosan" type="StaticBody3D" parent="." unique_id=1447070708]
+
+[node name="GroundLt1" type="CollisionShape3D" parent="Kosan" unique_id=1404835106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.550777, 0.8781539, 37.484726)
+shape = SubResource("BoxShape3D_ydiqy")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="GroundLt1a" type="CollisionShape3D" parent="Kosan" unique_id=9809885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.700699, 0.8781539, 28.53498)
+shape = SubResource("BoxShape3D_4w6r1")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="GroundLt1b" type="CollisionShape3D" parent="Kosan" unique_id=548836107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.583341, 0.8781539, 30.259676)
+shape = SubResource("BoxShape3D_ilhll")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="GroundLt2" type="CollisionShape3D" parent="Kosan" unique_id=1750988956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.550777, 3.818152, 36.6376)
+shape = SubResource("BoxShape3D_5eyk5")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="GroundLt2a" type="CollisionShape3D" parent="Kosan" unique_id=20382906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.531401, 3.818152, 28.918362)
+shape = SubResource("BoxShape3D_dmydg")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Tangga1" type="CollisionShape3D" parent="Kosan" unique_id=915476987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.876535, 0.018994033, 43.747746)
+shape = SubResource("ConvexPolygonShape3D_5rswm")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Tangga2" type="CollisionShape3D" parent="Kosan" unique_id=1851901100]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.4999647, 0.027843118, 31.215311)
+shape = SubResource("ConvexPolygonShape3D_ocfpv")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Tangga3" type="CollisionShape3D" parent="Kosan" unique_id=436661302]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -14.256728, 0.027843118, 27.6663)
+shape = SubResource("ConvexPolygonShape3D_yrmyv")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Tangga4" type="CollisionShape3D" parent="Kosan" unique_id=750682514]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.279172, 1.0905468, 27.937284)
+shape = SubResource("ConvexPolygonShape3D_sw277")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Tangga5" type="CollisionShape3D" parent="Kosan" unique_id=367412899]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10.596749, 2.1783218, 27.937284)
+shape = SubResource("ConvexPolygonShape3D_ydiqy")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Tangga6" type="CollisionShape3D" parent="Kosan" unique_id=2113129120]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.551481, 2.857758, 27.937284)
+shape = SubResource("ConvexPolygonShape3D_5eyk5")
 debug_color = Color(0, 0.5950001, 0.7, 1)

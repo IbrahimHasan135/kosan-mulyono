@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="EnvironmentPresetData" format=3 uid="uid://cmrkm0srb8urr"]
+
+[ext_resource type="Script" uid="uid://dpmphk55c6dta" path="res://resources/environment/environment_preset_data.gd" id="1_script"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_siang"]
+sky_top_color = Color(0.38, 0.48, 0.56, 1)
+sky_horizon_color = Color(0.62, 0.65, 0.66, 1)
+sky_curve = 0.09
+ground_bottom_color = Color(0.25, 0.22, 0.18, 1)
+ground_horizon_color = Color(0.55, 0.5, 0.42, 1)
+ground_curve = 0.15
+sun_angle_max = 12.0
+sun_curve = 0.25
+
+[sub_resource type="Sky" id="Sky_siang"]
+sky_material = SubResource("ProceduralSkyMaterial_siang")
+
+[sub_resource type="Environment" id="Environment_siang"]
+background_mode = 2
+sky = SubResource("Sky_siang")
+ambient_light_source = 2
+ambient_light_color = Color(0.62, 0.64, 0.66, 1)
+ambient_light_energy = 0.8
+tonemap_mode = 4
+tonemap_exposure = 0.62
+tonemap_agx_white = 20.34
+tonemap_agx_contrast = 1.1
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.65, 0.68, 0.7, 1)
+fog_light_energy = 0.4
+fog_density = 0.012
+fog_sky_affect = 0.6
+fog_height = -350.88
+fog_depth_curve = 0.3
+fog_depth_begin = 0.0
+fog_depth_end = 600.0
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.225
+adjustment_saturation = 1.24
+
+[resource]
+script = ExtResource("1_script")
+environment = SubResource("Environment_siang")
+sun_rotation_degrees = Vector3(-55, 45, 0)
+sun_color = Color(0.9, 0.88, 0.83, 1)
+sun_energy = 1.5

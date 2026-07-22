@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="EnvironmentPresetData" format=3 uid="uid://bqgj6ntrj5dyt"]
+
+[ext_resource type="Script" uid="uid://dpmphk55c6dta" path="res://resources/environment/environment_preset_data.gd" id="1_script"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_malam"]
+sky_top_color = Color(0.03, 0.02, 0.05, 1)
+sky_horizon_color = Color(0.55, 0.16, 0.07, 1)
+ground_bottom_color = Color(0.015, 0.01, 0.015, 1)
+ground_horizon_color = Color(0.38, 0.13, 0.06, 1)
+ground_curve = 0.15
+sun_angle_max = 25.0
+sun_curve = 0.2
+
+[sub_resource type="Sky" id="Sky_malam"]
+sky_material = SubResource("ProceduralSkyMaterial_malam")
+
+[sub_resource type="Environment" id="Environment_malam"]
+background_mode = 2
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_malam")
+ambient_light_source = 2
+ambient_light_color = Color(0.4, 0.22, 0.18, 1)
+ambient_light_energy = 0.5
+tonemap_mode = 4
+tonemap_exposure = 0.48
+tonemap_agx_white = 20.34
+tonemap_agx_contrast = 1.6
+glow_enabled = true
+glow_intensity = 0.7
+glow_strength = 1.2
+glow_bloom = 0.2
+glow_hdr_threshold = 0.9
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.45, 0.16, 0.09, 1)
+fog_light_energy = 0.5
+fog_density = 0.02
+fog_sky_affect = 0.5
+fog_height = -350.88
+fog_depth_curve = 0.6
+fog_depth_begin = 0.0
+fog_depth_end = 190.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.045
+volumetric_fog_albedo = Color(0.4, 0.2, 0.12, 1)
+volumetric_fog_emission = Color(0.3, 0.08, 0.03, 1)
+volumetric_fog_emission_energy = 0.15
+volumetric_fog_anisotropy = 0.3
+volumetric_fog_length = 100.0
+adjustment_enabled = true
+adjustment_brightness = 0.85
+adjustment_contrast = 1.1
+adjustment_saturation = 0.32
+
+[resource]
+script = ExtResource("1_script")
+environment = SubResource("Environment_malam")
+sun_rotation_degrees = Vector3(-8, 130, 0)
+sun_color = Color(0.45828247, 0.512362, 0.666641, 1)
+sun_energy = 1.2
+sun_visible = false
+street_lights_visible = true

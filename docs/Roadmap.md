@@ -12,6 +12,7 @@
 |---|-------|--------------------|--------|
 | 1 | [Project & Architecture Foundation](features/01_Project_Foundation.md) | Semua fitur lain butuh struktur folder, base class Driver/Service, autoload terdaftar. Tanpa ini tidak ada tempat menaruh kode. | Belum dikerjakan |
 | 2 | [Player Controller](features/02_Player_Controller.md) | Tidak bisa test fitur apapun (interaksi, NPC, item) tanpa player yang bisa jalan & lihat dunia. | Belum dikerjakan |
+| 2a | [Environment & Time-of-Day System](features/02a_Environment_TimeOfDay_System.md) | Dimajuin dari rencana awal karena tim art lagi aktif eksplorasi shader/mood — preset environment modular dibutuhin dari sekarang, bukan nunggu Fitur 16. | Belum dikerjakan |
 | 3 | [Interaction & Registry System](features/03_Interaction_Registry_System.md) | Tulang punggung semua objek interaktif (`InteractionService`, `NPCService`, `ItemService` registry). NPC/Item/Door dibangun di atas ini. | Belum dikerjakan |
 | 4 | [NPC & Dialogue System](features/04_NPC_Dialogue_System.md) | Karakter (Hasan, Chika, Pak Yono, Bu Yuni, Dimas) & dialog adalah cara utama pemain terima info cerita. | Belum dikerjakan |
 | 5 | [Item & Evidence System](features/05_Item_Evidence_System.md) | Investigation System adalah mekanik inti (Evidence Score, Truth Unlocked) — butuh dipakai sejak Chapter 1. | Belum dikerjakan |

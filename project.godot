@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 InteractionService="*res://scripts/services/interaction_service.gd"
+EnvironmentService="*res://scripts/services/environment_service.gd"
 
 [input]
 
