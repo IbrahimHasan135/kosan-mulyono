@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://st32bmhis3wp"]
+
+[ext_resource type="PackedScene" uid="uid://b0wlm5652tawu" path="res://scenes/levels/MainMap.tscn" id="1_w5nxl"]
+
+[sub_resource type="Sky" id="Sky_b85l5"]
+
+[sub_resource type="Environment" id="Environment_ld1r3"]
+background_mode = 1
+background_color = Color(0.43100652, 0.29680735, 0.1982587, 1)
+background_energy_multiplier = 3.17
+sky = SubResource("Sky_b85l5")
+ambient_light_color = Color(0.17044133, 0.17044118, 0.17044124, 1)
+ambient_light_energy = 3.77
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.3966615, 0.33856416, 0.20916101, 1)
+fog_light_energy = 5.48
+fog_sun_scatter = 0.35
+fog_density = 0.0065
+
+[node name="Node3D" type="Node3D" unique_id=1254557172]
+
+[node name="MainMap" parent="." unique_id=1514062866 instance=ExtResource("1_w5nxl")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1581154275]
+environment = SubResource("Environment_ld1r3")
