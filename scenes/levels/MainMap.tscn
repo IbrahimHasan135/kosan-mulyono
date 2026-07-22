@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b0wlm5652tawu"]
 
 [ext_resource type="PackedScene" uid="uid://drs0mktmayjje" path="res://assets/models/environment/main_map/main_map.glb" id="1_5rswm"]
-[ext_resource type="Script" uid="uid://b6r6ru1x5865k" path="res://scripts/controllers/main_game_controller.gd" id="2_ctrl01"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5rswm"]
 size = Vector3(98.78754, 0.50335693, 167.22336)
@@ -16,9 +15,8 @@ size = Vector3(7.247505, 0.50335693, 77.386154)
 size = Vector3(7.247505, 0.50335693, 76.067314)
 
 [node name="MainMap" type="Node3D" unique_id=1776137984]
-script = ExtResource("2_ctrl01")
 
-[node name="Base" type="Area3D" parent="." unique_id=404237522]
+[node name="Base" type="StaticBody3D" parent="." unique_id=404237522]
 
 [node name="main_map" parent="Base" unique_id=87877897 instance=ExtResource("1_5rswm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3195888, 0, 3.3104587)

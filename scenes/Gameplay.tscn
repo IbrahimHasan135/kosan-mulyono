@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bxysl8wn6xvn1"]
+
+[ext_resource type="PackedScene" uid="uid://b0wlm5652tawu" path="res://scenes/levels/MainMap.tscn" id="1_4aew2"]
+[ext_resource type="PackedScene" uid="uid://c6j7m6whmypdd" path="res://scenes/entities/player/Player.tscn" id="2_75vxi"]
+[ext_resource type="Script" uid="uid://b6r6ru1x5865k" path="res://scripts/controllers/main_game_controller.gd" id="3_ctrl01"]
+
+[sub_resource type="Environment" id="Environment_75vxi"]
+background_mode = 1
+background_color = Color(0.65964204, 0.4846697, 0.41140962, 1)
+background_energy_multiplier = 0.97
+ambient_light_source = 2
+ambient_light_color = Color(0.6117282, 0.5412265, 0.5033883, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 4
+tonemap_exposure = 0.4
+tonemap_agx_white = 20.34
+tonemap_agx_contrast = 1.8
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.6608577, 0.42822602, 0.34650663, 1)
+fog_light_energy = 0.45
+fog_density = 1.0
+fog_sky_affect = 0.416
+fog_height = -350.88
+fog_depth_curve = 0.07966023
+fog_depth_begin = 0.0
+fog_depth_end = 1534.5
+volumetric_fog_density = 0.4194
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_anisotropy = 0.23
+volumetric_fog_length = 139.19
+adjustment_enabled = true
+adjustment_brightness = 0.88
+adjustment_contrast = 1.075
+adjustment_saturation = 0.43
+
+[node name="Gameplay" type="Node3D" unique_id=895209422]
+script = ExtResource("3_ctrl01")
+
+[node name="MainMap" parent="." unique_id=1776137984 instance=ExtResource("1_4aew2")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=612964377 instance=ExtResource("2_75vxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9575424, 5.6347713, 49.97487)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1865419685]
+environment = SubResource("Environment_75vxi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2000413905]
+transform = Transform3D(0.96442384, -0.10027934, -0.24460363, -0.021946453, -0.9524392, 0.3039378, -0.26344875, -0.28775662, -0.9207558, -1.9509315, 23.370285, 0)
+light_color = Color(0.7644187, 0.776456, 0.59709126, 1)
+light_energy = 1.822
+shadow_enabled = true

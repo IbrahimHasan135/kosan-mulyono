@@ -48,7 +48,10 @@ res://
 │   └── shaders/                # File .gdshader (VHS, glitch, chromatic aberration)
 │
 ├── scenes/                   # Hasil RAKITAN dari assets/ — siap pakai di gameplay
-│   ├── levels/                # Scene utama map (MainMap.tscn = kos+minimarket+jalan, KampusKelas.tscn)
+│   ├── Gameplay.tscn           # Scene ROOT yang di-run (main_scene): instance level + Player +
+│   │                           # MainGameController. Ini satu-satunya tempat level & Player disatukan.
+│   ├── levels/                # Peta MURNI, TANPA Player/Controller (MainMap.tscn, KampusKelas.tscn)
+│   │                           # — biar bisa dibuka & diedit sebagai map doang, gak kebawa gameplay.
 │   ├── entities/               # Prefabs Player, NPC, Pintu, Item
 │   │   ├── player/
 │   │   ├── npc/
@@ -78,6 +81,7 @@ res://
 - **`assets/` = bahan mentah, `scenes/` = hasil rakitan siap pakai.** Satu file `.glb` karakter di `assets/models/characters/` nantinya dipakai di dalam `scenes/entities/npc/npc_hasan.tscn` yang sudah ditempeli `NPCDriver.gd`, collision shape, dan AnimationPlayer. Ini selaras dengan filosofi Driver: Driver adalah node fisik yang *memakai* model, bukan model itu sendiri.
 - **Sub-folder kategori (`characters/props/environment`) sengaja dibuat identik** dengan sub-folder di `scripts/drivers/` dan `scenes/entities/`. Saat menambah NPC baru, polanya selalu sama di 4 tempat: `assets/models/characters/`, `assets/textures/characters/`, `scenes/entities/npc/`, `scripts/drivers/characters/` — predictable dan mudah dicari, sejalan dengan tujuan arsitektur modular.
 - **`materials/` dipisah dari `textures/`** karena `materials/` adalah `.tres` Godot (kombinasi texture + shader + parameter) yang bisa dipakai ulang di banyak mesh, sedangkan `textures/` murni file gambar sumbernya.
+- **`levels/` vs `Gameplay.tscn` sengaja dipisah**: scene di `levels/` (`MainMap.tscn`, `KampusKelas.tscn`) isinya murni geometri map — gak ada Player, gak ada `MainGameController`. Ini bikin map bisa dibuka & diedit kapan aja (nambah furniture, geser dinding, dll) tanpa kebawa-bawa state gameplay. `Gameplay.tscn` adalah scene komposisi yang nge-instance 1 level dari `levels/` + `Player` dari `entities/player/`, dan di situ juga `MainGameController.gd` ditempel. **`Gameplay.tscn` yang jadi `main_scene` project**, bukan file di `levels/` langsung.
 
 ---
 
