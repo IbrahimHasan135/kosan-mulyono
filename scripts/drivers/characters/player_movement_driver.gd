@@ -5,11 +5,16 @@ extends CharacterBody3D
 @export var sprint_speed: float = 7.0
 @export var mouse_sensitivity: float = 0.003
 @export var pitch_limit_deg: float = 80.0
+@export var bob_frequency: float = 10.0
+@export var bob_amplitude: float = 0.045
 
 @onready var head: Node3D = $Head
 @onready var flashlight: SpotLight3D = $Head/Camera3D/FlashLight
+@onready var camera: Camera3D = $Head/Camera3D
+@onready var camera_base_y: float = camera.position.y
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var bob_time: float = 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -43,3 +48,11 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
+
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	var is_walking := horizontal_speed > 0.1 and is_on_floor()
+	if is_walking:
+		bob_time += delta * bob_frequency * (horizontal_speed / speed)
+	else:
+		bob_time = 0.0
+	camera.position.y = camera_base_y + sin(bob_time) * bob_amplitude
