@@ -14,6 +14,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	InteractionService.raycast = $Head/Camera3D/RayCast3D
+	InteractionService.crosshair = get_tree().current_scene.get_node("CanvasLayer/Crosshair")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

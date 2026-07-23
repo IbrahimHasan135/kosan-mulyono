@@ -22,12 +22,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 target_position = Vector3(0, 0, -3)
 
 [node name="FlashLight" type="SpotLight3D" parent="Head/Camera3D" unique_id=1526663068]
-visible = false
-light_energy = 3.027
-light_indirect_energy = 2.699
+transform = Transform3D(1, 0, 0, 0, 0.99941856, 0.03409713, 0, -0.034097128, 0.99941856, 0, -0.471632, 0)
+light_energy = 6.413
+light_indirect_energy = 2.995
 light_volumetric_fog_energy = 3.575
 light_size = 0.092
 spot_range = 4096.0
-spot_attenuation = 1.55
-spot_angle = 35.0
-spot_angle_attenuation = 0.28717455
+spot_attenuation = 2.03
+spot_angle = 43.34498
+spot_angle_attenuation = 0.07432544

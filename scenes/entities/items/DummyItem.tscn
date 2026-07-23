@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cp2b1mi53npui"]
+
+[ext_resource type="Script" path="res://scripts/drivers/objects/item_driver.gd" id="1_itemdrv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ymh3c"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5mar"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="DummyItem" type="StaticBody3D" unique_id=880478516]
+script = ExtResource("1_itemdrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=114957353]
+shape = SubResource("BoxShape3D_ymh3c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2099423734]
+mesh = SubResource("BoxMesh_j5mar")

@@ -1,6 +1,7 @@
 extends Node
 
 @export var raycast: RayCast3D
+@export var crosshair: CrosshairDriver
 var current_interactable: InteractableDriver = null
 
 func _process(_delta: float) -> void:
@@ -13,10 +14,9 @@ func _process(_delta: float) -> void:
 func _check_raycast() -> void:
 	if not raycast.is_colliding():
 		current_interactable = null
-		return
-
-	var collider = raycast.get_collider()
-	if collider is InteractableDriver:
-		current_interactable = collider
 	else:
-		current_interactable = null
+		var collider = raycast.get_collider()
+		current_interactable = collider if collider is InteractableDriver else null
+
+	if crosshair:
+		crosshair.set_hovering(current_interactable != null)

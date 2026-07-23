@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 InteractionService="*res://scripts/services/interaction_service.gd"
 EnvironmentService="*res://scripts/services/environment_service.gd"
+NPCService="*res://scripts/services/npc_service.gd"
+ItemService="*res://scripts/services/item_service.gd"
 
 [input]
 

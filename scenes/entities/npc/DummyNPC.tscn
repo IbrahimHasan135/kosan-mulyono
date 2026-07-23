@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b4mrq5rbpvbco"]
+
+[ext_resource type="Script" path="res://scripts/drivers/characters/npc_driver.gd" id="1_npcdrv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eirvu"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gqho0"]
+radius = 0.4
+height = 1.8
+
+[node name="DummyNPC" type="StaticBody3D" unique_id=1569484935]
+script = ExtResource("1_npcdrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=279504074]
+shape = SubResource("CapsuleShape3D_eirvu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=486610347]
+mesh = SubResource("CapsuleMesh_gqho0")

@@ -4,56 +4,70 @@
 [ext_resource type="PackedScene" uid="uid://c6j7m6whmypdd" path="res://scenes/entities/player/Player.tscn" id="2_75vxi"]
 [ext_resource type="Script" uid="uid://b6r6ru1x5865k" path="res://scripts/controllers/main_game_controller.gd" id="3_ctrl01"]
 [ext_resource type="PackedScene" uid="uid://bo4bnxdcwje5w" path="res://scenes/entities/environment/EnvironmentRig.tscn" id="4_a8mty"]
+[ext_resource type="Shader" uid="uid://daubnu214hr70" path="res://resources/shaders/effect_canvas.gdshader" id="5_jfxgp"]
+[ext_resource type="Resource" uid="uid://cmrkm0srb8urr" path="res://resources/environment/siang.tres" id="5_xbw1n"]
+[ext_resource type="PackedScene" uid="uid://b4mrq5rbpvbco" path="res://scenes/entities/npc/DummyNPC.tscn" id="7_hsn8a"]
+[ext_resource type="PackedScene" uid="uid://cp2b1mi53npui" path="res://scenes/entities/items/DummyItem.tscn" id="8_4j5yk"]
+[ext_resource type="Script" uid="uid://dbi5q8iing1s3" path="res://scripts/drivers/ui/crosshair_driver.gd" id="9_crshr"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_malam"]
-sky_top_color = Color(0.03, 0.02, 0.05, 1)
-sky_horizon_color = Color(0.55, 0.16, 0.07, 1)
-ground_bottom_color = Color(0.015, 0.01, 0.015, 1)
-ground_horizon_color = Color(0.38, 0.13, 0.06, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_siang"]
+sky_top_color = Color(0.38, 0.48, 0.56, 1)
+sky_horizon_color = Color(0.62, 0.65, 0.66, 1)
+sky_curve = 0.09
+ground_bottom_color = Color(0.25, 0.22, 0.18, 1)
+ground_horizon_color = Color(0.55, 0.5, 0.42, 1)
 ground_curve = 0.15
-sun_angle_max = 25.0
-sun_curve = 0.2
+sun_angle_max = 12.0
+sun_curve = 0.25
 
-[sub_resource type="Sky" id="Sky_malam"]
-sky_material = SubResource("ProceduralSkyMaterial_malam")
+[sub_resource type="Sky" id="Sky_siang"]
+sky_material = SubResource("ProceduralSkyMaterial_siang")
 
-[sub_resource type="Environment" id="Environment_malam"]
+[sub_resource type="Environment" id="Environment_siang"]
 background_mode = 2
-background_energy_multiplier = 0.8
-sky = SubResource("Sky_malam")
+sky = SubResource("Sky_siang")
 ambient_light_source = 2
-ambient_light_color = Color(0.4, 0.22, 0.18, 1)
-ambient_light_energy = 0.5
+ambient_light_color = Color(0.62, 0.64, 0.66, 1)
+ambient_light_energy = 0.8
 tonemap_mode = 4
-tonemap_exposure = 0.48
+tonemap_exposure = 0.62
 tonemap_agx_white = 20.34
-tonemap_agx_contrast = 1.6
-glow_enabled = true
-glow_intensity = 0.7
-glow_strength = 1.2
-glow_bloom = 0.2
-glow_hdr_threshold = 0.9
+tonemap_agx_contrast = 1.1
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.45, 0.16, 0.09, 1)
-fog_light_energy = 0.5
-fog_density = 0.02
-fog_sky_affect = 0.5
+fog_light_color = Color(0.65, 0.68, 0.7, 1)
+fog_light_energy = 0.4
+fog_density = 0.012
+fog_sky_affect = 0.6
 fog_height = -350.88
-fog_depth_curve = 0.6
+fog_depth_curve = 0.3
 fog_depth_begin = 0.0
-fog_depth_end = 190.0
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.045
-volumetric_fog_albedo = Color(0.4, 0.2, 0.12, 1)
-volumetric_fog_emission = Color(0.3, 0.08, 0.03, 1)
-volumetric_fog_emission_energy = 0.15
-volumetric_fog_anisotropy = 0.3
-volumetric_fog_length = 100.0
+fog_depth_end = 600.0
 adjustment_enabled = true
-adjustment_brightness = 0.85
-adjustment_contrast = 1.1
-adjustment_saturation = 0.32
+adjustment_brightness = 0.9
+adjustment_contrast = 1.225
+adjustment_saturation = 1.24
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfxgp"]
+shader = ExtResource("5_jfxgp")
+shader_parameter/exposure = 1.1850000325375
+shader_parameter/contrast = 0.986000023085
+shader_parameter/saturation = 0.5910000280725
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 2.00000007125
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 12.0
+shader_parameter/dither_strength = 0.75
+shader_parameter/chrom_aberration = 4.0
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.4170000198075
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+shader_parameter/blur = 0.15
+shader_parameter/flicker_speed = 30.0
+shader_parameter/flicker_intensity = 0.102000004845
+shader_parameter/flicker_color = Color(0, 0, 0, 1)
 
 [node name="Gameplay" type="Node3D" unique_id=895209422]
 script = ExtResource("3_ctrl01")
@@ -66,73 +80,113 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9575424, 8.634771, 49.9748
 
 [node name="EnvironmentRig" parent="." unique_id=2097080154 instance=ExtResource("4_a8mty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0206988, 1.0053711, 26.782124)
+current_preset = ExtResource("5_xbw1n")
 
 [node name="WorldEnvironment" parent="EnvironmentRig" index="0" unique_id=1963854790]
-environment = SubResource("Environment_malam")
+environment = SubResource("Environment_siang")
 
 [node name="Sun" parent="EnvironmentRig" index="1" unique_id=1864120801]
-transform = Transform3D(-0.6427876, -0.1066128, 0.7585892, 0, 0.9902682, 0.13917308, -0.7660444, 0.089458756, -0.63653195, 0, 0, 0)
-visible = false
-light_color = Color(0.45828247, 0.512362, 0.666641, 1)
+transform = Transform3D(0.7071067, -0.57922804, 0.40557975, 0, 0.5735765, 0.81915194, -0.7071067, -0.57922804, 0.40557975, 0, 0, 0)
+light_color = Color(0.9, 0.88, 0.83, 1)
+light_energy = 1.5
 
-[node name="SpotLight3D" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="0" unique_id=157158802]
+[node name="LightingNight" parent="EnvironmentRig" index="2" unique_id=390856346]
+visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="0" unique_id=157158802]
 transform = Transform3D(0.07831513, 0.10783278, 0.9910796, 0.10783279, 0.98738414, -0.11595161, -0.9910797, 0.11595165, 0.0656992, 7.0846286, 3.2558532, -41.952057)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="1" unique_id=1140880280]
+[node name="SpotLight3D2" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="1" unique_id=1140880280]
 transform = Transform3D(0.07831513, 0.10783277, 0.9910796, 0.107832775, 0.987384, -0.11595163, -0.9910797, 0.11595164, 0.065699205, 5.8927317, -6.931707, -41.952057)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="2" unique_id=1982652682]
+[node name="SpotLight3D3" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="2" unique_id=1982652682]
 transform = Transform3D(0.07831513, 0.10783277, 0.9910796, 0.107832745, 0.987384, -0.11595163, -0.9910797, 0.11595161, 0.065699205, 7.149966, 3.81431, 8.168907)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="3" unique_id=736727534]
+[node name="SpotLight3D4" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="3" unique_id=736727534]
 transform = Transform3D(0.07831514, 0.10783277, 0.9910796, 0.10783273, 0.987384, -0.11595163, -0.9910797, 0.1159516, 0.06569922, 5.958068, -6.373249, 8.168907)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="SpotLight3D5" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="4" unique_id=622718788]
+[node name="SpotLight3D5" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="4" unique_id=622718788]
 transform = Transform3D(0.07831514, 0.10783277, 0.9910796, 0.10783272, 0.987384, -0.11595163, -0.9910797, 0.11595159, 0.06569922, 7.149966, 3.81431, 64.117096)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="SpotLight3D6" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="5" unique_id=900715708]
+[node name="SpotLight3D6" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="5" unique_id=900715708]
 transform = Transform3D(0.07831514, 0.10783277, 0.9910796, 0.10783271, 0.987384, -0.11595163, -0.9910797, 0.115951575, 0.06569922, 5.9580665, -6.3732476, 64.117096)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="SpotLight3D7" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="6" unique_id=2118722378]
+[node name="SpotLight3D7" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="6" unique_id=2118722378]
 transform = Transform3D(0.07831514, 0.10783277, 0.9910796, 0.10783269, 0.987384, -0.11595163, -0.9910797, 0.11595156, 0.06569922, 7.1309714, 3.651959, 113.9745)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="SpotLight3D8" type="SpotLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="7" unique_id=1339643873]
+[node name="SpotLight3D8" type="SpotLight3D" parent="EnvironmentRig/LightingNight" index="7" unique_id=1339643873]
 transform = Transform3D(0.07831514, 0.10783277, 0.9910796, 0.10783268, 0.987384, -0.11595163, -0.9910797, 0.115951546, 0.06569922, 5.939072, -6.5355988, 113.9745)
 light_energy = 5.842
 light_indirect_energy = 1.716
 spot_range = 42.57094
 spot_angle = 81.96674
 
-[node name="Moon" type="DirectionalLight3D" parent="EnvironmentRig/LightingNight" parent_id_path=PackedInt32Array(2097080154, 390856346) index="8" unique_id=635098476]
+[node name="Moon" type="DirectionalLight3D" parent="EnvironmentRig/LightingNight" index="8" unique_id=635098476]
 transform = Transform3D(-0.16182598, 0.40846348, 0.89831513, 0.12868053, 0.9112754, -0.3911755, -0.97839344, 0.052293327, -0.20002928, 8.329865, -0.9745554, 0)
 light_color = Color(0.23831195, 0.40153813, 0.50749534, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=704103677]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1181402998]
+material = SubResource("ShaderMaterial_jfxgp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Crosshair" type="Control" parent="CanvasLayer" unique_id=1516671363]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+script = ExtResource("9_crshr")
+metadata/_edit_use_anchors_ = true
+
+[node name="DummyNPC" parent="." unique_id=1569484935 instance=ExtResource("7_hsn8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.213207, 0.9053701, 76.54688)
+
+[node name="DummyItem" parent="." unique_id=880478516 instance=ExtResource("8_4j5yk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.581636, 0.15537015, 83.507805)
 
 [editable path="EnvironmentRig"]
