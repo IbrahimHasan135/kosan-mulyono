@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://co74otllveb0f"]
+
+[ext_resource type="PackedScene" uid="uid://brdgshwx75hka" path="res://assets/models/item/graffiti/graffiti.glb" id="1_6tjg6"]
+[ext_resource type="Script" path="res://scripts/drivers/objects/item_driver.gd" id="2_itemdrv"]
+[ext_resource type="Resource" path="res://resources/items/catatan_tembok.tres" id="3_itemdata"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ct"]
+size = Vector3(74.29073, 68.94548, 0.25)
+
+[node name="CatatanTembok" type="StaticBody3D" unique_id=1629957675]
+script = ExtResource("2_itemdrv")
+item_id = "item_catatan_tembok"
+item_data = ExtResource("3_itemdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=167872623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9178534, 0.9707184, 0)
+shape = SubResource("BoxShape3D_ct")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1795459973 instance=ExtResource("1_6tjg6")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.025133133, -0.03969574, -0.024365872)

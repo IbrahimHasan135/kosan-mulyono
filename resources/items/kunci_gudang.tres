@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/items/item_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+item_name = "Kunci Gudang"
+description = "Kunci karatan bertuliskan \"GDG\" di gantungannya."
+is_readable = false
+is_evidence = true
+is_key = true

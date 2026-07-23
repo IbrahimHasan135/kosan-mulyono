@@ -24,5 +24,10 @@ func set_item_visible(item_id: String, is_visible: bool) -> void:
 	if _items.has(item_id):
 		_items[item_id].visible = is_visible
 
+func remove_item(item_id: String) -> void:
+	if _items.has(item_id):
+		_items[item_id].queue_free() # beneran hapus node — collision & raycast ikut mati, bukan cuma visual
+		# _exit_tree() di ItemDriver otomatis unregister diri sendiri begitu node ke-hapus
+
 func _on_item_interacted(item_id: String) -> void:
 	item_interacted.emit(item_id)

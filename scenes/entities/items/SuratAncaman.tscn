@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cqcxd2ajwxmmk"]
+
+[ext_resource type="PackedScene" uid="uid://cj7ptmm1n5ny" path="res://assets/models/item/notebook/notebook.glb" id="1_762i2"]
+[ext_resource type="Script" path="res://scripts/drivers/objects/item_driver.gd" id="2_itemdrv"]
+[ext_resource type="Resource" path="res://resources/items/surat_ancaman.tres" id="3_itemdata"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sa"]
+size = Vector3(0.25, 0.02, 0.35)
+
+[node name="SuratAncaman" type="StaticBody3D" unique_id=176755291]
+script = ExtResource("2_itemdrv")
+item_id = "item_surat_ancaman"
+item_data = ExtResource("3_itemdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=250816312]
+shape = SubResource("BoxShape3D_sa")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1139500196 instance=ExtResource("1_762i2")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

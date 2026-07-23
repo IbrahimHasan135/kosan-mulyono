@@ -23,6 +23,7 @@ target_position = Vector3(0, 0, -3)
 
 [node name="FlashLight" type="SpotLight3D" parent="Head/Camera3D" unique_id=1526663068]
 transform = Transform3D(1, 0, 0, 0, 0.99941856, 0.03409713, 0, -0.034097128, 0.99941856, 0, -0.471632, 0)
+visible = false
 light_energy = 6.413
 light_indirect_energy = 2.995
 light_volumetric_fog_energy = 3.575

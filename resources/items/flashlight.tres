@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/items/item_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+item_name = "Senter"
+description = "Senter tua tapi baterainya masih lumayan."
+is_readable = true
+read_text = "Kamu mengambil senter tua ini. Setidaknya sekarang kamu gak bakal jalan di gelap-gelapan."
+is_evidence = false
+equipment_grant = "flashlight"

@@ -4,6 +4,7 @@ extends InteractableDriver
 signal interacted(item_id: String)
 
 @export var item_id: String = "item_dummy_01"
+@export var item_data: ItemData
 
 func _ready() -> void:
 	ItemService.register_item(item_id, self)

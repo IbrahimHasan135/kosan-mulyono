@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cmgdfvdynnjkf"]
+
+[ext_resource type="PackedScene" uid="uid://c2n7g2pytcqox" path="res://assets/models/item/keys/keys.glb" id="1_dv2k2"]
+[ext_resource type="Script" path="res://scripts/drivers/objects/item_driver.gd" id="2_itemdrv"]
+[ext_resource type="Resource" path="res://resources/items/kunci_gudang.tres" id="3_itemdata"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kg"]
+size = Vector3(0.05, 0.15, 0.02)
+
+[node name="KunciGudang" type="StaticBody3D" unique_id=1386011477]
+script = ExtResource("2_itemdrv")
+item_id = "item_kunci_gudang"
+item_data = ExtResource("3_itemdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1314512188]
+shape = SubResource("BoxShape3D_kg")
+
+[node name="Sketchfab_Scene" parent="." unique_id=417993450 instance=ExtResource("1_dv2k2")]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)

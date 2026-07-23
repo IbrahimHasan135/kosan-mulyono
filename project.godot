@@ -23,6 +23,7 @@ NPCService="*res://scripts/services/npc_service.gd"
 ItemService="*res://scripts/services/item_service.gd"
 DialogueService="*res://scripts/services/dialogue_service.gd"
 PlayerService="*res://scripts/services/player_service.gd"
+ItemReaderService="*res://scripts/services/item_reader_service.gd"
 
 [input]
 

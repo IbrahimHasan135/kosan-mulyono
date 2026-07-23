@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cliga4veyf8ap"]
+
+[ext_resource type="PackedScene" uid="uid://b481gu0osvl22" path="res://assets/models/item/flashlight/flashlight.glb" id="1_0s2pl"]
+[ext_resource type="Script" path="res://scripts/drivers/objects/item_driver.gd" id="2_itemdrv"]
+[ext_resource type="Resource" path="res://resources/items/flashlight.tres" id="3_itemdata"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fh"]
+size = Vector3(0.08, 0.08, 0.25)
+
+[node name="Flashlight" type="StaticBody3D" unique_id=500809444]
+script = ExtResource("2_itemdrv")
+item_id = "item_flashlight"
+item_data = ExtResource("3_itemdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1407808363]
+shape = SubResource("BoxShape3D_fh")
+
+[node name="Sketchfab_Scene" parent="." unique_id=2040667620 instance=ExtResource("1_0s2pl")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0.013, 0, -0.029444657)
+
+[node name="PlayerCamera" parent="Sketchfab_Scene/Sketchfab_model/Flash Light_fbx/RootNode" parent_id_path=PackedInt32Array(2040667620, 286925219) index="0" unique_id=1118512911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Flash Light_BuildersTorch_Albedo_0" parent="Sketchfab_Scene/Sketchfab_model/Flash Light_fbx/RootNode/PlayerCamera/ItemCamera/ItemHolder/Flash Light" parent_id_path=PackedInt32Array(2040667620, 2120357649) index="0" unique_id=248261660]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, -1.1368684e-13, 0, -2.842171e-14, 0.9999997, 5.891858, 7.2189713, -3.7256296)
+
+[node name="Flash Light_BuildersTorch_Albedo 1_0" parent="Sketchfab_Scene/Sketchfab_model/Flash Light_fbx/RootNode/PlayerCamera/ItemCamera/ItemHolder/Flash Light" parent_id_path=PackedInt32Array(2040667620, 2120357649) index="1" unique_id=1600734408]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, -1.1368684e-13, 0, -2.842171e-14, 0.9999997, 5.891858, 7.1259727, -3.7256293)
+
+[editable path="Sketchfab_Scene"]

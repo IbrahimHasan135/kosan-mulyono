@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b77g007glqps5"]
+
+[ext_resource type="Script" uid="uid://cp28jtfc6p52l" path="res://resources/items/item_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+item_name = "Catatan Tembok"
+description = "Coretan asal-asalan di tembok, kayaknya bukan apa-apa."
+is_readable = true
+read_text = "\"jangan lupa bayar kos... jangan lupa bayar kos... jangan lupa\""
+is_pickupable = false

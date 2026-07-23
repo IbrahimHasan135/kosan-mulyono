@@ -20,6 +20,7 @@ var bob_time: float = 0.0
 var movement_locked: bool = false
 var _look_target: Vector3 = Vector3.ZERO
 var _has_look_target: bool = false
+var has_flashlight: bool = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -49,12 +50,15 @@ func set_look_target(target_position: Vector3) -> void:
 func clear_look_target() -> void:
 	_has_look_target = false
 
+func grant_flashlight() -> void:
+	has_flashlight = true
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and not movement_locked:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		head.rotate_x(-event.relative.y * mouse_sensitivity)
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-pitch_limit_deg), deg_to_rad(pitch_limit_deg))
-	if event.is_action_pressed("flashlight_toggle"):
+	if event.is_action_pressed("flashlight_toggle") and has_flashlight:
 		flashlight.visible = not flashlight.visible
 
 func _physics_process(delta: float) -> void:
