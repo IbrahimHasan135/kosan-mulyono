@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogueData" format=3 uid="uid://dutw2fufbkgla"]
+
+[ext_resource type="Script" uid="uid://khnt5r41mp2k" path="res://resources/dialogue/dialogue_data.gd" id="1_data"]
+[ext_resource type="Script" uid="uid://dmj3gj3qldlnw" path="res://resources/dialogue/dialogue_line.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Resource_y1"]
+script = ExtResource("2_line")
+speaker_id = "npc_yono"
+speaker_display_name = "Pak Yono"
+text = "Kuburan... jangan keluar malam, Nak. Yang di bawah itu masih lapar."
+
+[sub_resource type="Resource" id="Resource_y2"]
+script = ExtResource("2_line")
+speaker_id = "player"
+speaker_display_name = "Raka"
+text = "Maksudnya gimana, Pak?"
+
+[sub_resource type="Resource" id="Resource_y3"]
+script = ExtResource("2_line")
+speaker_id = "npc_yono"
+speaker_display_name = "Pak Yono"
+text = "Hehehe... kamu belum ngerti. Nanti juga ngerti sendiri kalau udah waktunya."
+
+[resource]
+script = ExtResource("1_data")
+lines = Array[ExtResource("2_line")]([SubResource("Resource_y1"), SubResource("Resource_y2"), SubResource("Resource_y3")])

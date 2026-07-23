@@ -9,6 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://b4mrq5rbpvbco" path="res://scenes/entities/npc/DummyNPC.tscn" id="7_hsn8a"]
 [ext_resource type="PackedScene" uid="uid://cp2b1mi53npui" path="res://scenes/entities/items/DummyItem.tscn" id="8_4j5yk"]
 [ext_resource type="Script" uid="uid://dbi5q8iing1s3" path="res://scripts/drivers/ui/crosshair_driver.gd" id="9_crshr"]
+[ext_resource type="Script" uid="uid://cwg8l28ntfbgq" path="res://scripts/controllers/tasks/story_task.gd" id="10_story"]
+[ext_resource type="Script" uid="uid://37qj18tcdmmx" path="res://scripts/controllers/tasks/dialogue_task.gd" id="11_dlgtask"]
+[ext_resource type="Script" uid="uid://lm226ro6ej7n" path="res://scripts/controllers/tasks/interaction_task.gd" id="12_inttask"]
+[ext_resource type="Script" uid="uid://bhbey2ulyrueu" path="res://scripts/controllers/tasks/world_environment_task.gd" id="13_wetask"]
+[ext_resource type="Script" uid="uid://2elidpt5v15l" path="res://scripts/controllers/tasks/hud_task.gd" id="14_hudtask"]
+[ext_resource type="Script" uid="uid://78a2b715rlbe" path="res://scripts/controllers/tasks/save_task.gd" id="15_savetask"]
+[ext_resource type="PackedScene" uid="uid://bpebolgfhsn16" path="res://scenes/ui/DialogueBox.tscn" id="16_dlgbox"]
+[ext_resource type="PackedScene" uid="uid://cvg5mmjdhwipg" path="res://scenes/entities/npc/BuYuni.tscn" id="17_k5k47"]
+[ext_resource type="PackedScene" uid="uid://chotvjefoucov" path="res://scenes/entities/npc/Chika.tscn" id="18_v4xgt"]
+[ext_resource type="PackedScene" uid="uid://ccmc70lunfnbs" path="res://scenes/entities/npc/Dimas.tscn" id="19_2f17k"]
+[ext_resource type="PackedScene" uid="uid://ds8k8mnymtsdn" path="res://scenes/entities/npc/Hasan.tscn" id="20_41005"]
+[ext_resource type="PackedScene" uid="uid://bnhqic6dfdnbu" path="res://scenes/entities/npc/PakYono.tscn" id="21_k1hro"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_siang"]
 sky_top_color = Color(0.38, 0.48, 0.56, 1)
@@ -181,6 +193,8 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 mouse_filter = 2
 script = ExtResource("9_crshr")
+
+[node name="DialogueBox" parent="CanvasLayer" unique_id=1341337174 instance=ExtResource("16_dlgbox")]
 metadata/_edit_use_anchors_ = true
 
 [node name="DummyNPC" parent="." unique_id=1569484935 instance=ExtResource("7_hsn8a")]
@@ -188,5 +202,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.213207, 0.9053701, 76.546
 
 [node name="DummyItem" parent="." unique_id=880478516 instance=ExtResource("8_4j5yk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.581636, 0.15537015, 83.507805)
+
+[node name="Tasks" type="Node" parent="." unique_id=1285366690]
+
+[node name="StoryTask" type="Node" parent="Tasks" unique_id=930983734]
+script = ExtResource("10_story")
+
+[node name="DialogueTask" type="Node" parent="Tasks" unique_id=1615903997]
+script = ExtResource("11_dlgtask")
+
+[node name="InteractionTask" type="Node" parent="Tasks" unique_id=733134525]
+script = ExtResource("12_inttask")
+
+[node name="WorldEnvironmentTask" type="Node" parent="Tasks" unique_id=544507670]
+script = ExtResource("13_wetask")
+
+[node name="HUDTask" type="Node" parent="Tasks" unique_id=653557732]
+script = ExtResource("14_hudtask")
+
+[node name="SaveTask" type="Node" parent="Tasks" unique_id=185720986]
+script = ExtResource("15_savetask")
+
+[node name="Chika" parent="." unique_id=1593409972 instance=ExtResource("18_v4xgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6080446, 1.4562271, 86.373116)
+
+[node name="Hasan" parent="." unique_id=1901854759 instance=ExtResource("20_41005")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1290007, 1.5329671, 85.36216)
+
+[node name="Dimas" parent="." unique_id=72329898 instance=ExtResource("19_2f17k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5112348, 1.7737967, 66.09593)
+
+[node name="PakYono" parent="." unique_id=154098345 instance=ExtResource("21_k1hro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.867027, 1.7730079, 42.247765)
+
+[node name="BuYuni" parent="." unique_id=603648221 instance=ExtResource("17_k5k47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.693151, 1.6784775, 79.12028)
 
 [editable path="EnvironmentRig"]

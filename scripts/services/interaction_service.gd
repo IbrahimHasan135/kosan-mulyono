@@ -20,3 +20,7 @@ func _check_raycast() -> void:
 
 	if crosshair:
 		crosshair.set_hovering(current_interactable != null)
+
+func set_crosshair_visible(is_visible: bool) -> void:
+	if crosshair:
+		crosshair.visible = is_visible

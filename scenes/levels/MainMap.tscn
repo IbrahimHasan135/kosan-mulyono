@@ -53,6 +53,24 @@ points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 
 margin = 0.0
 points = PackedVector3Array(0, 0, 0, 0, 1.1, 0, 0, 0, 1.7, 1.4, 0, 0, 1.4, 1.1, 0, 1.4, 0, 1.7)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksi1o"]
+size = Vector3(0.2175293, 1.161087, 12.088074)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w50g0"]
+size = Vector3(0.2175293, 5.0663147, 15.788818)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1uiu2"]
+size = Vector3(0.2175293, 1.3631134, 1.6504822)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k4ky7"]
+size = Vector3(0.2175293, 3.0583286, 6.763939)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ftyib"]
+size = Vector3(0.16442871, 2.1405125, 3.4599838)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7bdg7"]
+size = Vector3(0.16442871, 2.1405125, 1.8691463)
+
 [node name="MainMap" type="Node3D" unique_id=1776137984]
 
 [node name="main_map" parent="." unique_id=87877897 instance=ExtResource("1_5rswm")]
@@ -146,4 +164,34 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 [node name="Tangga6" type="CollisionShape3D" parent="Kosan" unique_id=2113129120]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.551481, 2.857758, 27.937284)
 shape = SubResource("ConvexPolygonShape3D_5eyk5")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="Besi" type="CollisionShape3D" parent="Kosan" unique_id=863421579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.04878, 0.5719261, 37.415436)
+shape = SubResource("BoxShape3D_ksi1o")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="BatasTangga" type="CollisionShape3D" parent="Kosan" unique_id=258662111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.543969, 2.52454, 37.47754)
+shape = SubResource("BoxShape3D_w50g0")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="BatasTangga2" type="CollisionShape3D" parent="Kosan" unique_id=311296261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.543969, 4.3761406, 28.776413)
+shape = SubResource("BoxShape3D_1uiu2")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="BatasTangga3" type="CollisionShape3D" parent="Kosan" unique_id=383690748]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.982683, 3.528533, 27.88565)
+shape = SubResource("BoxShape3D_k4ky7")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="BatasTangga4" type="CollisionShape3D" parent="Kosan" unique_id=539642034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.659558, 1.0022352, 27.871662)
+shape = SubResource("BoxShape3D_ftyib")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="BatasTangga5" type="CollisionShape3D" parent="Kosan" unique_id=2117697402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.294463, 1.0022352, 27.076244)
+shape = SubResource("BoxShape3D_7bdg7")
 debug_color = Color(0, 0.5950001, 0.7, 1)

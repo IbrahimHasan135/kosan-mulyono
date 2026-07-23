@@ -1,6 +1,8 @@
 # Fitur 02a — Environment & Time-of-Day System
 
-**Ringkasan**: Sistem buat gonta-ganti preset pencahayaan/atmosfer (sky, fog, warna matahari) secara modular — bisa diganti manual lewat Inspector Godot (buat kamu & temen kamu diskusi art concept, nol kode) ATAU dipanggil programatik lewat `EnvironmentService` (buat gameplay sungguhan nanti, dipicu `MainGameController`/`StoryEngineService`).
+**Ringkasan**: Sistem buat gonta-ganti preset pencahayaan/atmosfer (sky, fog, warna matahari) secara modular — bisa diganti manual lewat Inspector Godot (buat kamu & temen kamu diskusi art concept, nol kode) ATAU dipanggil programatik lewat `EnvironmentService` (buat gameplay sungguhan nanti, dipicu `WorldEnvironmentTask`).
+
+*Revisi arsitektur: keputusan "waktu apa yang aktif" sekarang tanggung jawab `WorldEnvironmentTask` (Layer 3, `scripts/controllers/tasks/world_environment_task.gd` — udah dibuat & dipanggil dari sesi refactor Task Controller), **bukan** `MainGameController` manggil `EnvironmentService` langsung kayak sebelumnya. `MainGameController` cuma nge-instance Task ini sebagai child, gak nyimpen keputusan apapun sendiri. Lihat `Engine_Design.md` §3.C.*
 
 **Dependency**: [02_Player_Controller](02_Player_Controller.md) (butuh `Gameplay.tscn` udah ada)
 
@@ -22,7 +24,7 @@
 | `scripts/services/environment_service.gd` | **Layer 2 (Autoload)**, daftar 3 preset (`siang`, `sore_maghrib`, `malam`), method `set_time_of_day(nama)` yang nyari `EnvironmentDriver` yang lagi aktif (self-registered) dan manggil `apply_preset`. Ini yang dipanggil programatik pas gameplay jalan. |
 | `scenes/entities/environment/EnvironmentRig.tscn` | Scene wadah: `EnvironmentRig` (root, script Driver) → child `WorldEnvironment`, `Sun` (`DirectionalLight3D`), dan `LightingNight` (`Node3D` kosong — wadah lampu jalan). **Ini yang kamu drag ke `Gameplay.tscn`.** |
 | `project.godot` | `EnvironmentService` didaftarin sebagai Autoload. |
-| `scripts/controllers/main_game_controller.gd` | Ditambah 1 baris: `EnvironmentService.set_time_of_day("sore_maghrib")` di `_ready()` — ini keputusan "waktu apa yang dipakai pas game beneran jalan", lewat kode, bukan manual. |
+| `scripts/controllers/tasks/world_environment_task.gd` | **(Update pasca-refactor Task Controller)** `_ready()` manggil `set_time_of_day("sore_maghrib")` — ini keputusan "waktu apa yang dipakai pas game beneran jalan", lewat kode, bukan manual. `MainGameController` cuma nge-instance Task ini, gak manggil `EnvironmentService` langsung lagi. |
 
 ## Yang Kamu Lakukan (manual)
 1. Buka `scenes/Gameplay.tscn` di editor.
@@ -41,9 +43,9 @@
 - **Langsung keliatan perubahannya di viewport editor**, gak perlu run game, gak perlu sentuh kode.
 
 **Lewat kode (pas gameplay beneran jalan)**:
-- `main_game_controller.gd` manggil `EnvironmentService.set_time_of_day("sore_maghrib")` pas `_ready()`.
+- `world_environment_task.gd` manggil `set_time_of_day("sore_maghrib")` pas `_ready()`.
 - Ini **override** apapun yang kepilih manual di Inspector — begitu F5, yang dipakai adalah preset yang ditentuin lewat kode ini, bukan preview manual kamu.
-- Mau ganti waktu yang dipakai pas gameplay? Ganti nama string di baris itu ke `"siang"` / `"sore_maghrib"` / `"malam"`.
+- Mau ganti waktu yang dipakai pas gameplay? Ganti nama string di `world_environment_task.gd` ke `"siang"` / `"sore_maghrib"` / `"malam"`.
 
 ---
 
@@ -54,7 +56,7 @@
 - [ ] **Test lampu jalan**: begitu ganti ke `malam.tres`, node `LightingNight` (dan isi lampu di dalamnya) harus keliatan/nyala. Ganti ke `siang.tres`/`sore_maghrib.tres`, `LightingNight` harus invisible.
 - [ ] **Test Sun mati pas malam**: ganti `Current Preset` ke `malam.tres` — node `Sun` (`DirectionalLight3D`) harus invisible (gak ada bayangan matahari sama sekali). Ganti ke `siang.tres`/`sore_maghrib.tres`, `Sun` harus muncul lagi.
 - [ ] Balikin `Current Preset` ke `sore_maghrib.tres` lagi (atau biarin apa aja, gak ngaruh ke hasil run — lihat poin berikutnya).
-- [ ] **Test kode**: tekan F5 — walaupun tadi Inspector-nya di-set ke preset lain, begitu game jalan harus balik ke preset `"sore_maghrib"` (sesuai kode di `main_game_controller.gd`), soalnya kode yang menang pas runtime. Lampu jalan otomatis ikutan mati juga (karena preset `sore_maghrib` = `street_lights_visible: false`).
+- [ ] **Test kode**: tekan F5 — walaupun tadi Inspector-nya di-set ke preset lain, begitu game jalan harus balik ke preset `"sore_maghrib"` (sesuai kode di `world_environment_task.gd`), soalnya kode yang menang pas runtime. Lampu jalan otomatis ikutan mati juga (karena preset `sore_maghrib` = `street_lights_visible: false`).
 - [ ] Gak ada error di console soal `EnvironmentService`, `EnvironmentDriver`, atau `null` reference.
 
 ## Catatan Teknis (gotcha Godot yang kejadian pas eksekusi ini)
@@ -65,4 +67,4 @@
 - Preset environment udah modular — nambah waktu baru = tinggal bikin 1 file `.tres` baru + 1 baris di `PRESETS` dictionary `environment_service.gd`, gak perlu ubah scene/driver apapun.
 - Lampu jalan (`LightingNight`) otomatis nyala/mati ngikutin preset, tanpa kode tambahan tiap ganti preset.
 - Kamu & temen kamu bisa preview cepat lewat Inspector buat diskusi art concept.
-- Gameplay sungguhan tetap dikontrol lewat kode (`Controller → Service`), siap dipanggil `StoryEngineService` pas checkpoint cerita di Fitur 08 nanti.
+- Gameplay sungguhan tetap dikontrol lewat kode (`WorldEnvironmentTask → EnvironmentService → EnvironmentDriver`), siap dipanggil dari `StoryTask` (lewat `on_flag_changed`) pas checkpoint cerita di Fitur 08 nanti.

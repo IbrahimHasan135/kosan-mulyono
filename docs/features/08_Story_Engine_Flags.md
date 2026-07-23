@@ -1,21 +1,23 @@
-# Fitur 08 — Story Engine & Flag System
+# Fitur 08 — Story Task & Flag System
 
-**Ringkasan**: `StoryEngineService` penuh — manajemen chapter (`Prologue`/`Chapter 1`/`Chapter 2`), story flags, dan checkpoint yang memicu perubahan dunia nyata (posisi NPC, munculnya item, status pintu) lewat Registry Service dari fitur 03.
+**Ringkasan**: `StoryTask` penuh — manajemen chapter (`Prologue`/`Chapter 1`/`Chapter 2`), story flags, evidence score, dan checkpoint yang memicu perubahan dunia nyata (posisi NPC, munculnya item, status pintu, preset waktu) lewat Registry Service dari fitur 03 dan Task lain (`InteractionTask`, `WorldEnvironmentTask`).
+
+*Revisi arsitektur: dulu ini dirancang sebagai `StoryEngineService` (Autoload) yang manggil `NPCService`/`ItemService` langsung. Sekarang jadi `StoryTask` (Layer 3, bukan Autoload) — udah ada kerangkanya dari sesi refactor Task Controller, tinggal diisi logic checkpoint asli di sini. Lihat `Engine_Design.md` §3.C.*
 
 **Dependency**: [04_NPC_Dialogue_System](04_NPC_Dialogue_System.md), [05_Item_Evidence_System](05_Item_Evidence_System.md), [06_Door_Room_Management](06_Door_Room_Management.md), [07_Level_Greybox_MainMap](07_Level_Greybox_MainMap.md)
 
 ---
 
 ## Phase (Garis Besar)
-1. Lengkapi `StoryEngineService.gd`: `set_chapter`, `set_flag`, `check_flag`, signal `chapter_changed`/`flag_changed`.
-2. Definisikan skema checkpoint: mapping flag → aksi dunia (`NPCService.move_npc`, `ItemService.spawn_item`, `RoomService`/`DoorService` lock-unlock).
-3. `MainGameController.gd`: fungsi orchestrator per checkpoint besar (mengikuti pola `trigger_hasan_discovery_event()` di `Engine_Design.md`).
-4. Sistem trigger checkpoint (Area3D masuk ruangan tertentu, selesai dialog tertentu, item tertentu didapat, dll).
+1. Isi `_apply_checkpoint_effect(flag_name, value)` di `story_task.gd` (kerangkanya udah ada, isinya masih `pass`) — mapping flag → aksi dunia (`NPCService.move_npc`, `ItemService.spawn_item`, `DoorService` lock-unlock, `WorldEnvironmentTask.set_time_of_day`).
+2. Isi `on_dialogue_finished(npc_id)` (kerangka udah ada) — cek syarat ending berdasar dialog yang udah selesai.
+3. Sistem trigger checkpoint tambahan (Area3D masuk area tertentu → panggil `story_task.set_flag(...)` lewat `MainGameController`, bukan hardcode di scene).
 
 ## Testing Criteria (Garis Besar)
-- Checkpoint dummy (mis. "hasan_body_found") memicu efek berantai: NPC pindah + item muncul + pintu berubah status, semua tanpa hardcode node reference di Story Engine.
+- Checkpoint dummy (mis. `set_flag("hasan_body_found", true)`) memicu efek berantai: NPC pindah + item muncul + preset waktu berubah, semua tanpa hardcode node reference di `StoryTask`.
 - Chapter bisa berpindah (`Prologue` → `Chapter 1`) dan flag lama tetap tersimpan dengan benar.
 - Bisa cek state flag kapan saja tanpa memicu efek samping (`check_flag` murni read-only).
+- `StoryTask` gak pernah manggil Task lain secara langsung buat notifikasi — semua koneksi tetap lewat wiring di `main_game_controller.gd` (`_wire_tasks()`).
 
 ## Checkpoint (Garis Besar)
-- Story Engine terbukti bisa mengorkestrasi seluruh sistem via checkpoint dummy, siap dipakai isi konten cerita asli (12–14).
+- `StoryTask` terbukti bisa mengorkestrasi seluruh sistem via checkpoint dummy, siap dipakai isi konten cerita asli (12–14).

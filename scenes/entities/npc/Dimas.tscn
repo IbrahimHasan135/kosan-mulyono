@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ccmc70lunfnbs"]
+
+[ext_resource type="Script" uid="uid://ed76gq3pqer3" path="res://scripts/drivers/characters/npc_driver.gd" id="1_npcdrv"]
+[ext_resource type="PackedScene" uid="uid://0dsgow33xde" path="res://assets/models/characters/Dimas/Dimas.glb" id="2_opdte"]
+[ext_resource type="Resource" path="res://resources/dialogue/dimas.tres" id="3_dlgdata"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eirvu"]
+radius = 0.4
+height = 1.8
+
+[node name="Dimas" type="StaticBody3D" unique_id=1569484935]
+script = ExtResource("1_npcdrv")
+npc_id = "npc_dimas"
+dialogue_data = ExtResource("3_dlgdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=279504074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.86842537, 0)
+shape = SubResource("CapsuleShape3D_eirvu")
+
+[node name="Dimas" parent="." unique_id=1174152764 instance=ExtResource("2_opdte")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, -1.7684253, 0)

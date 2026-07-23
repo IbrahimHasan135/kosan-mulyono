@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ds8k8mnymtsdn"]
+
+[ext_resource type="Script" uid="uid://ed76gq3pqer3" path="res://scripts/drivers/characters/npc_driver.gd" id="1_npcdrv"]
+[ext_resource type="PackedScene" uid="uid://c7w63mpg2lk2v" path="res://assets/models/characters/Hasan/Hasan.glb" id="2_ucg46"]
+[ext_resource type="Resource" path="res://resources/dialogue/hasan.tres" id="3_dlgdata"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eirvu"]
+radius = 0.4
+height = 1.8
+
+[node name="Hasan" type="StaticBody3D" unique_id=1569484935]
+script = ExtResource("1_npcdrv")
+npc_id = "npc_hasan"
+dialogue_data = ExtResource("3_dlgdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=279504074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.62759596, 0)
+shape = SubResource("CapsuleShape3D_eirvu")
+
+[node name="Hasan" parent="." unique_id=1913362093 instance=ExtResource("2_ucg46")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.527596, 0)

@@ -82,11 +82,11 @@ Service pusat yang mendeteksi objek interaktif via raycast (Layer 2), sesuai `En
 ---
 
 ## Phase 4 — Controller Shell: `MainGameController.gd`
-Kerangka kosong untuk root controller (Layer 3) — **belum** memanggil `StoryEngineService` apapun, karena Service itu baru dibangun di Fitur 08.
+Kerangka kosong untuk root controller (Layer 3) — **belum** manggil/nge-instance `StoryTask` apapun, karena Task-Task itu baru dibangun mulai Fitur 04 dan seterusnya (lihat `Engine_Design.md` §3.C).
 
 **Langkah**:
 1. Buat `scripts/controllers/main_game_controller.gd`: `extends Node`, `func _ready() -> void: print("MainGameController: Foundation OK")`.
-2. Jangan tambahkan pemanggilan `StoryEngineService`/Service lain — itu baru masuk saat Fitur 08 dieksekusi.
+2. Jangan tambahkan instance `StoryTask`/Task lain — itu baru masuk mulai Fitur 04 dieksekusi.
 
 **Testing Phase 4**:
 - [ ] Script tidak ada parse error.

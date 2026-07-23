@@ -70,7 +70,7 @@ Ini **bukan scene baru**, cuma 1 node `Control` yang kamu tambahin manual ke `Ca
 ---
 
 ## Phase 1 — Registry Service: `NPCService` & `ItemService`
-Layer 2 (Autoload) — nyimpen mapping `id -> Driver instance`, disediain API tingkat tinggi (`move_npc`, `set_item_visible`, dll.) tanpa nyimpen business logic apapun (itu tugas Service lain kayak `DialogueService`/`EvidenceManager` di Fitur 04/05).
+Layer 2 (Autoload) — nyimpen mapping `id -> Driver instance`, disediain API tingkat tinggi (`move_npc`, `set_item_visible`, dll.) tanpa nyimpen business logic apapun (itu tugas `DialogueTask`/`InteractionTask` di Layer 3 — lihat `Engine_Design.md` §3.C — di Fitur 04/05).
 
 **Langkah**:
 1. Buat `scripts/services/npc_service.gd` — `extends Node` (**jangan** pakai `class_name`, dia bakal jadi Autoload — lihat `Engine_Design.md` §4). Isi: `register_npc(id, driver)`, `unregister_npc(id)`, `get_npc(id)`, `move_npc(id, target: Vector3)`.
@@ -88,15 +88,15 @@ Layer 2 (Autoload) — nyimpen mapping `id -> Driver instance`, disediain API ti
 Driver konkret pertama yang beneran self-register ke Registry Service, dan membuktikan `interact()` polymorphic jalan lewat raycast Player.
 
 **Langkah**:
-1. Buat `scripts/drivers/characters/npc_driver.gd`: `class_name NPCDriver extends InteractableDriver`. `@export var npc_id: String = "npc_dummy_01"`. `_ready()`: self-register ke `NPCService.register_npc(npc_id, self)`. `_exit_tree()`: `NPCService.unregister_npc(npc_id)`. `interact()`: `print("[NPC] %s diajak bicara (dummy — dialog asli nunggu Fitur 04)" % npc_id)`.
-2. Buat `scripts/drivers/objects/item_driver.gd`: `class_name ItemDriver extends InteractableDriver`. `@export var item_id: String = "item_dummy_01"`. `_ready()`/`_exit_tree()` self-register/unregister ke `ItemService` sama polanya. `interact()`: `print("[Item] %s diambil (dummy — evidence asli nunggu Fitur 05)" % item_id)` lalu `queue_free()` — item dummy hilang dari scene setelah diambil, sekaligus jadi bukti registry otomatis bersih pas node dihapus.
+1. Buat `scripts/drivers/characters/npc_driver.gd`: `class_name NPCDriver extends InteractableDriver`. Signal `interacted(npc_id: String)`. `@export var npc_id: String = "npc_dummy_01"`. `_ready()`: self-register ke `NPCService.register_npc(npc_id, self)`. `_exit_tree()`: `NPCService.unregister_npc(npc_id)`. `interact()`: **cuma** `interacted.emit(npc_id)` — Driver gak boleh manggil Service/Task buat keputusan bisnis (lihat `Engine_Design.md` §1). `NPCService` yang connect ke sinyal ini pas register, terus relay jadi `npc_interacted(npc_id)` ke Layer 3.
+2. Buat `scripts/drivers/objects/item_driver.gd`: pola identik, signal `interacted(item_id: String)`, `interact()` cuma `interacted.emit(item_id)` — **bukan** `queue_free()` langsung (itu keputusan `InteractionTask` nanti di Fitur 05, bukan Driver yang mutusin sendiri).
 3. Attach `npc_driver.gd` ke root `DummyNPC` (di `DummyNPC.tscn`), dan `item_driver.gd` ke root `DummyItem` (di `DummyItem.tscn`) — scene yang udah dibuat di Phase 0.
 
 **Testing Phase 2**:
-- [ ] F5, jalan ke deket `DummyNPC`, arahin pandangan ke situ, tekan `interact` (E) — console muncul `"[NPC] npc_dummy_01 diajak bicara..."`.
-- [ ] Jalan ke deket `DummyItem`, arahin, tekan `interact` — console muncul `"[Item] item_dummy_01 diambil..."`, dan objeknya **hilang** dari scene (visual & collision-nya ilang, gak bisa diinteraksi lagi).
+- [ ] F5, jalan ke deket `DummyNPC`, arahin pandangan ke situ, tekan `interact` (E) — console muncul print dari `DialogueTask` (kerangka Task Controller yang udah dengerin `NPCService.npc_interacted` — lihat `Engine_Design.md` §3.C), bukan dari `NPCDriver` langsung.
+- [ ] Jalan ke deket `DummyItem`, arahin, tekan `interact` — console muncul print dari `InteractionTask`, dan item jadi **invisible** (bukan `queue_free()` — `InteractionTask` manggil `ItemService.set_item_visible(id, false)`).
 - [ ] Buka Debugger → Remote, klik autoload `NPCService`, cek property `_npcs` — harus ada entry `"npc_dummy_01"` nunjuk ke instance `DummyNPC`.
-- [ ] Buka Debugger → Remote, klik autoload `ItemService`, cek `_items` — **sebelum** interact ada entry `"item_dummy_01"`; **setelah** interact (item ke-`queue_free()`), entry itu ilang sendiri dari dictionary (bukti unregister via `_exit_tree()` jalan).
+- [ ] Buka Debugger → Remote, klik node `Tasks/DialogueTask` & `Tasks/InteractionTask` — pastiin keduanya beneran nerima sinyal (cek lewat print di console udah cukup buat testing ini).
 - [ ] Gak ada error console soal null reference atau `InteractableDriver` type-check gagal.
 
 ---
@@ -126,4 +126,4 @@ Titik kecil di tengah layar yang membesar begitu raycast Player nunjuk ke `Inter
 - Registry Service pattern (`NPCService`, `ItemService`) terbukti bekerja: self-registration, lookup by ID, dan auto-cleanup pas node dihapus, semua jalan tanpa `get_node(...)` hardcoded.
 - Rantai penuh **Raycast (Fitur 02) → InteractionService (Fitur 01) → Driver.interact() (polymorphic) → Registry** terbukti nyambung end-to-end lewat 2 dummy object.
 - Crosshair kasih feedback visual real-time (membesar/mengecil) sesuai status raycast — bukti `InteractionService` udah "hidup", bukan cuma logic diem di background.
-- Siap jadi fondasi **Fitur 04 (NPC & Dialogue System)** dan **Fitur 05 (Item & Evidence System)** — tinggal ganti isi `interact()` dummy ini dengan panggilan ke `DialogueService`/`EvidenceManager` beneran, dan ganti mesh placeholder dengan model asli. Crosshair ini juga jadi basis visual buat prompt teks di Fitur 10 (tinggal nambah `Label` di sebelah titik yang sama).
+- Siap jadi fondasi **Fitur 04 (NPC & Dialogue System)** dan **Fitur 05 (Item & Evidence System)** — `DialogueTask`/`InteractionTask` (Layer 3) yang udah dengerin sinyal dari sini tinggal dikembangin isi logic-nya, dan mesh placeholder tinggal diganti model asli. Crosshair ini juga jadi basis visual buat prompt teks di Fitur 10 (tinggal nambah `Label` di sebelah titik yang sama).

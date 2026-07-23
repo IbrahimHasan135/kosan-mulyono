@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DialogueData" format=3 uid="uid://w4lcxpe86scy"]
+
+[ext_resource type="Script" uid="uid://khnt5r41mp2k" path="res://resources/dialogue/dialogue_data.gd" id="1_data"]
+[ext_resource type="Script" uid="uid://dmj3gj3qldlnw" path="res://resources/dialogue/dialogue_line.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Resource_d1"]
+script = ExtResource("2_line")
+speaker_id = "npc_dimas"
+speaker_display_name = "Dimas"
+text = "Kamu penghuni baru? Hati-hati di sini, kos ini... ada aja ceritanya."
+
+[sub_resource type="Resource" id="Resource_d2"]
+script = ExtResource("2_line")
+speaker_id = "player"
+speaker_display_name = "Raka"
+text = "Ada apa emang, Pak?"
+
+[sub_resource type="Resource" id="Resource_d3"]
+script = ExtResource("2_line")
+speaker_id = "npc_yono"
+speaker_display_name = "Pak Yono (teriak dari kejauhan)"
+text = "WOI! JANGAN DIDENGERIN POLISI ITU! DIA GA TAU APA-APA!"
+
+[sub_resource type="Resource" id="Resource_d4"]
+script = ExtResource("2_line")
+speaker_id = "npc_dimas"
+speaker_display_name = "Dimas"
+text = "...itu Pak Yono, jangan dipikirin, emang suka teriak-teriak sendiri dari sana."
+
+[sub_resource type="Resource" id="Resource_d5"]
+script = ExtResource("2_line")
+speaker_id = "player"
+speaker_display_name = "Raka"
+text = "Oh... oke."
+
+[sub_resource type="Resource" id="Resource_d6"]
+script = ExtResource("2_line")
+speaker_id = "npc_yono"
+speaker_display_name = "Pak Yono (teriak dari kejauhan)"
+text = "AWAS KUBURAN, NAK! MALEM JANGAN KELUAR!"
+
+[sub_resource type="Resource" id="Resource_d7"]
+script = ExtResource("2_line")
+speaker_id = "npc_dimas"
+speaker_display_name = "Dimas"
+text = "Nah itu, sering banget dia gitu. Udah, jangan sok jagoan sendirian kalau ada yang aneh, bilang aja ke saya."
+
+[resource]
+script = ExtResource("1_data")
+lines = Array[ExtResource("2_line")]([SubResource("Resource_d1"), SubResource("Resource_d2"), SubResource("Resource_d3"), SubResource("Resource_d4"), SubResource("Resource_d5"), SubResource("Resource_d6"), SubResource("Resource_d7")])

@@ -7,10 +7,10 @@
 ---
 
 ## Phase (Garis Besar)
-1. Susun checkpoint Chapter 1 di `StoryEngineService` (transisi dari Prologue → Chapter 1, ganti playable character).
-2. Isi dialog wawancara (Chika, Bu Yuni) + reaksi berbeda tergantung evidence yang sudah/belum ditemukan Raka sebelumnya (jika didesain saling terhubung).
-3. Rancang & trigger gejala psikologis awal via `DistortionService` (fitur 09) — pintu buka sendiri, objective berubah jadi "hapus jejak".
-4. Evidence baru khusus Chapter 1 (dokumen, foto) yang menambah Evidence Score/Truth Unlocked.
+1. Susun checkpoint Chapter 1 di `StoryTask` (transisi dari Prologue → Chapter 1 via `set_chapter`, ganti playable character).
+2. Isi dialog wawancara (Chika, Bu Yuni) + reaksi berbeda tergantung evidence yang sudah/belum ditemukan Raka sebelumnya (`story_task.has_evidence(...)`, kalau didesain saling terhubung).
+3. Rancang & trigger gejala psikologis awal lewat `StoryTask._apply_checkpoint_effect()` manggil `DistortionService` (fitur 09) — pintu buka sendiri, objective berubah jadi "hapus jejak".
+4. Evidence baru khusus Chapter 1 (dokumen, foto) yang menambah `evidence_score`/`truth_unlocked` di `StoryTask` (lewat `InteractionTask`, sama pola Fitur 05).
 
 ## Testing Criteria (Garis Besar)
 - Transisi Prologue → Chapter 1 mulus (load state baru, ganti kontrol ke Dimas) tanpa residual state salah (mis. inventory Raka tidak nyangkut ke Dimas kalau memang harus terpisah).

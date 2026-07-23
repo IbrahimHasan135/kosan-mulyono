@@ -7,9 +7,9 @@
 ---
 
 ## Phase (Garis Besar)
-1. Susun urutan event Prologue sebagai daftar checkpoint konkret di `StoryEngineService` (sesuai alur `Game_Design.md` §5).
+1. Susun urutan event Prologue sebagai daftar checkpoint konkret di `StoryTask` (`_apply_checkpoint_effect`, sesuai alur `Game_Design.md` §5).
 2. Isi dialog asli (bukan placeholder) untuk Bu Yuni, Hasan, Chika, Pak Yono, Dimas sepanjang Prologue.
-3. Setup event "lorong ditutup plastik hitam" (perubahan visual/room state via `RoomService`).
+3. Setup event "lorong ditutup plastik hitam" (perubahan visual — toggle `visible`/animasi node langsung di `MainMap`, dipicu `StoryTask` lewat `DoorService`/Driver terkait; **bukan** `RoomService`, itu udah dihapus dari rencana — lihat Fitur 06).
 4. Setup event penemuan jasad Hasan + jumpscare sosok mirip hantu + transisi "layar gelap" (akhir Prologue).
 5. Playtest alur penuh dari awal sampai akhir Prologue tanpa terputus.
 

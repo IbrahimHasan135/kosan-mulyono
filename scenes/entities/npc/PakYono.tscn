@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bnhqic6dfdnbu"]
+
+[ext_resource type="Script" uid="uid://ed76gq3pqer3" path="res://scripts/drivers/characters/npc_driver.gd" id="1_npcdrv"]
+[ext_resource type="PackedScene" uid="uid://cunjcu72xqqws" path="res://assets/models/characters/Pak Yono/Pak Yono.glb" id="2_xq0yl"]
+[ext_resource type="Resource" path="res://resources/dialogue/pakyono.tres" id="3_dlgdata"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eirvu"]
+radius = 0.4
+height = 1.8
+
+[node name="PakYono" type="StaticBody3D" unique_id=1569484935]
+script = ExtResource("1_npcdrv")
+npc_id = "npc_yono"
+dialogue_data = ExtResource("3_dlgdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=279504074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.86763686, 0)
+shape = SubResource("CapsuleShape3D_eirvu")
+
+[node name="Pak Yono" parent="." unique_id=2033501230 instance=ExtResource("2_xq0yl")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.7676368, 0)

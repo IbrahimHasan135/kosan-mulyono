@@ -16,7 +16,7 @@
 
 ## Testing Criteria (Garis Besar)
 - Player bisa menjelajah seluruh kos, jalan penghubung, hingga minimarket dalam satu sesi tanpa loading/scene-switch, dan tanpa collision bug/stuck.
-- Semua room trigger & pintu berfungsi dengan `RoomService`/`DoorService` yang sudah dibangun.
+- Semua pintu berfungsi dengan `DoorService` yang sudah dibangun (lihat `Engine_Design.md` §3.C — gak ada `RoomService`/`RoomTask`, room management disederhanain jadi teleport posisi Player buat pindah peta, lihat Fitur 15).
 - Frame rate stabil saat semua area "aktif" sekaligus (uji batas performa Single-Scene Architecture yang sekarang lebih besar karena mencakup minimarket+jalan).
 
 ## Checkpoint (Garis Besar)

@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DialogueData" format=3 uid="uid://bo3x33cgdhhy7"]
+
+[ext_resource type="Script" uid="uid://khnt5r41mp2k" path="res://resources/dialogue/dialogue_data.gd" id="1_data"]
+[ext_resource type="Script" uid="uid://dmj3gj3qldlnw" path="res://resources/dialogue/dialogue_line.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Resource_c1"]
+script = ExtResource("2_line")
+speaker_id = "npc_chika"
+speaker_display_name = "Chika"
+text = "Eh lo yang baru pindah itu ya? Gua Chika, kamar situ."
+
+[sub_resource type="Resource" id="Resource_c2"]
+script = ExtResource("2_line")
+speaker_id = "player"
+speaker_display_name = "Raka"
+text = "Iya, gua Raka. Salam kenal."
+
+[sub_resource type="Resource" id="Resource_c3"]
+script = ExtResource("2_line")
+speaker_id = "npc_hasan"
+speaker_display_name = "Hasan"
+text = "Woi, ngomongin apaan nih? Ajak-ajak dong."
+
+[sub_resource type="Resource" id="Resource_c4"]
+script = ExtResource("2_line")
+speaker_id = "npc_chika"
+speaker_display_name = "Chika"
+text = "Gak ngomongin lo kok, GR banget."
+
+[sub_resource type="Resource" id="Resource_c5"]
+script = ExtResource("2_line")
+speaker_id = "npc_hasan"
+speaker_display_name = "Hasan"
+text = "Yah, padahal gua pengen cerita soal kos ini juga."
+
+[sub_resource type="Resource" id="Resource_c6"]
+script = ExtResource("2_line")
+speaker_id = "player"
+speaker_display_name = "Raka"
+text = "Cerita apaan emang?"
+
+[sub_resource type="Resource" id="Resource_c7"]
+script = ExtResource("2_line")
+speaker_id = "npc_chika"
+speaker_display_name = "Chika"
+text = "Udah, jangan dengerin dia, ntar lo malah parno duluan."
+
+[resource]
+script = ExtResource("1_data")
+lines = Array[ExtResource("2_line")]([SubResource("Resource_c1"), SubResource("Resource_c2"), SubResource("Resource_c3"), SubResource("Resource_c4"), SubResource("Resource_c5"), SubResource("Resource_c6"), SubResource("Resource_c7")])

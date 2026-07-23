@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cvg5mmjdhwipg"]
+
+[ext_resource type="Script" uid="uid://ed76gq3pqer3" path="res://scripts/drivers/characters/npc_driver.gd" id="1_npcdrv"]
+[ext_resource type="PackedScene" uid="uid://cnnnwxuukcr7u" path="res://assets/models/characters/Bu Yuni/Bu Yuni.glb" id="2_nyyec"]
+[ext_resource type="Resource" uid="uid://dqvrw5im5chrp" path="res://resources/dialogue/buyuni.tres" id="3_dlgdata"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eirvu"]
+radius = 0.4
+height = 1.8
+
+[node name="BuYuni" type="StaticBody3D" unique_id=1569484935]
+script = ExtResource("1_npcdrv")
+npc_id = "npc_buyuni"
+dialogue_data = ExtResource("3_dlgdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=279504074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7731059, 0)
+shape = SubResource("CapsuleShape3D_eirvu")
+
+[node name="Bu Yuni" parent="." unique_id=107289965 instance=ExtResource("2_nyyec")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1.673106, 0)
